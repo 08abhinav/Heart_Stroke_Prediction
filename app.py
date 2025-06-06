@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from mlModel import predict_stroke_risk
+from mlModel import predict_stroke_risk, thresholds, feature_weights
 app = Flask(__name__)
 
 @app.route('/')
@@ -11,8 +11,12 @@ def about():
     return render_template('about.html')
 
 @app.route('/predict')
-def pedict():
+def pedict_page():
     return render_template('predict.html')
+
+@app.route('/get-started')
+def trynow():
+    return render_template('trynow.html')
 
 @app.route('/predict-stroke', methods=['POST'])
 def predict():
@@ -26,7 +30,7 @@ def predict():
             'smoking_status': int(request.form['smoking_status'])
         }
         
-        risk_category, risk_percent = predict_stroke_risk(user_data)
+        risk_category, risk_percent = predict_stroke_risk(user_data, thresholds, feature_weights)
         return jsonify({
             'risk_category': risk_category,
             'risk_percent': round(risk_percent, 2)
