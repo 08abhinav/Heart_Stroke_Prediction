@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryNow|CardioPredict</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black">
+    <header class="bg-neutral-800 text-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">    
+            <div class="flex items-center">
+            <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full"/>
+            <div class="ml-4">
+                <h1 class="text-2xl font-bold font-mono">CardioPredict</h1>
+                <p class="text-sm font-mono font-semibold">Know Before It Strikes</p>
+            </div>
+            </div>
+
+            <nav class="flex space-x-8 text-lg font-medium font-mono">
+            <a href="/" class="hover:text-blue-400 transition">Home</a>
+            <!-- <a href="/predict" class="hover:text-blue-400 transition">Predict</a> -->
+            <a href="/about" class="hover:text-blue-400 transition">About</a>
+            </nav>
+        </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <h2 class="text-4xl font-bold font-mono text-center mb-8 text-blue-300">Get Started With Heart Stroke Prediction</h2>
+
+    <section class="bg-neutral-900 rounded-xl shadow-lg p-6 mb-8">
+      <h3 class="text-2xl font-semibold mb-4 text-blue-200">How Our Model Works</h3>
+      <p class="text-gray-300 leading-relaxed">
+        CardioPredict uses a machine learning model trained on real-world health data to assess your risk for heart-related issues.
+        It considers medical factors like your age, BMI, glucose level, and lifestyle choices like smoking or physical activity.
+        After you provide these inputs, our model instantly calculates your likelihood of having a potential heart stroke.
+      </p>
+    </section>
+
+    <section class="bg-neutral-900 rounded-xl shadow-lg p-6 mb-8">
+      <h3 class="text-2xl font-semibold mb-4 text-blue-200">What We Need From You</h3>
+      <ul class="list-disc list-inside text-gray-300 space-y-2">
+        <li>Age</li>
+        <li>Hypertension (Yes/No)</li>
+        <li>Heart Disease History (Yes/No)</li>
+        <li>Average Glucose Level</li>
+        <li>BMI (Body Mass Index)</li>
+        <li>Smoking Status</li>
+      </ul>
+    </section>
+
+    <div class="text-center mt-10">
+      <a href="/predict" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300">
+        Check My Risk
+      </a>
+    </div>
+  </main>
+</body>
+</html>
