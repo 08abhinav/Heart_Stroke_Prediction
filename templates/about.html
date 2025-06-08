@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About | CardioPredict</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-white font-mono">
+<body
+  class="min-h-screen text-white bg-cover bg-center bg-no-repeat flex flex-col"
+  style="background-image: url('https://www.insideprecisionmedicine.com/wp-content/uploads/2019/01/1417-696x484.jpeg');"
+>
 
   <!-- Navbar -->
-  <header class="bg-neutral-800 shadow">
+  <header class="bg-white/10 backdrop-blur-md text-white shadow fixed top-0 left-0 right-0 z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         <div class="flex items-center">
-          <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full"/>
+          <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full" />
           <div class="ml-4">
-            <h1 class="text-2xl font-bold">CardioPredict</h1>
-            <p class="text-sm font-semibold">Know Before It Strikes</p>
+            <h1 class="text-2xl font-bold font-mono">CardioPredict</h1>
+            <p class="text-sm font-mono font-semibold">Know Before It Strikes</p>
           </div>
         </div>
-
-        <nav class="flex space-x-8 text-lg">
+        <nav class="flex space-x-8 text-lg font-medium font-mono">
           <a href="/" class="hover:text-blue-400 transition">Home</a>
-          <!-- <a href="/predict" class="hover:text-blue-400 transition">Predict</a> -->
           <a href="/about" class="text-blue-400 font-semibold border-b-2 border-blue-400">About</a>
         </nav>
       </div>
@@ -30,16 +31,18 @@
   </header>
 
   <!-- About Content -->
-  <main class="max-w-4xl mx-auto mt-16 px-6">
+  <main
+    class="max-w-4xl mx-auto mt-32 px-6 py-12 bg-black bg-opacity-50 rounded-lg shadow-lg font-mono text-center"
+  >
     <h2 class="text-4xl font-bold text-blue-500 mb-4">About CardioPredict</h2>
-    <p class="text-gray-300 text-lg leading-relaxed">
+    <p class="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
       CardioPredict is an AI-powered web application designed to help users assess their risk of stroke based on health data inputs.
       Our goal is to enable early detection and promote awareness by analyzing personal health metrics using machine learning models.
     </p>
 
     <div class="mt-10">
       <h3 class="text-2xl font-semibold text-blue-400">Why CardioPredict?</h3>
-      <ul class="list-disc pl-6 text-gray-300 mt-4 space-y-2">
+      <ul class="list-disc pl-6 text-gray-300 mt-4 space-y-2 max-w-xl mx-auto text-left">
         <li>Early stroke risk assessment based on medical features</li>
         <li>User-friendly interface with quick predictions</li>
         <li>Built using Python, Flask, and machine learning</li>
@@ -49,7 +52,7 @@
 
     <div class="mt-10">
       <h3 class="text-2xl font-semibold text-blue-400">Our Mission</h3>
-      <p class="mt-2 text-gray-300">
+      <p class="mt-2 text-gray-300 max-w-3xl mx-auto">
         We aim to build accessible and data-driven tools that empower individuals to take control of their heart health and make informed lifestyle choices.
       </p>
     </div>
