@@ -6,96 +6,107 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Predict | CardioPredict</title>
 </head>
-<body class="bg-black text-white font-mono min-h-screen">
+<body
+  class="bg-cover bg-center bg-no-repeat text-white font-mono min-h-screen"
+  style="background-image: url('https://www.insideprecisionmedicine.com/wp-content/uploads/2019/01/1417-696x484.jpeg');"
+>
 
-  <!-- Navbar -->
-  <header class="bg-neutral-800 shadow fixed top-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
-        <div class="flex items-center">
-          <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full"/>
-          <div class="ml-4">
-            <h1 class="text-2xl font-bold">CardioPredict</h1>
-            <p class="text-sm font-semibold">Know Before It Strikes</p>
+  <!-- Overlay wrapper for opacity -->
+  <div class="bg-black bg-opacity-70 min-h-screen">
+
+    <!-- Navbar -->
+    <header class="bg-white/10 backdrop-blur-md text-white shadow fixed top-0 w-full z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center">
+            <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full"/>
+            <div class="ml-4">
+              <h1 class="text-2xl font-bold font-mono">CardioPredict</h1>
+              <p class="text-sm font-mono font-semibold">Know Before It Strikes</p>
+            </div>
           </div>
+
+          <nav class="flex space-x-8 text-lg font-mono">
+            <a href="/" class="hover:text-blue-400 transition">Home</a>
+            <a href="/about" class="hover:text-blue-400 transition">About</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto mt-20 px-8 py-10 bg-gray-800 bg-opacity-60 rounded-lg shadow-lg font-mono">
+      <h2 class="text-4xl font-bold text-blue-500 mb-8">Stroke Risk Prediction</h2>
+      <form id="strokeForm" method="post" class="space-y-6">
+
+        <div>
+          <label class="block text-lg font-semibold mb-2 text-gray-300" for="age">Age</label>
+          <input type="number" id="age" name="age" placeholder="Enter your age"
+                 class="w-full px-4 py-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-400"/>
         </div>
 
-        <nav class="flex space-x-8 text-lg">
-          <a href="/" class="hover:text-blue-400 transition">Home</a>
-          <!-- <a href="/predict" class="text-blue-400 font-semibold border-b-2 border-blue-400">Predict</a> -->
-          <a href="/about" class="hover:text-blue-400 transition">About</a>
-        </nav>
+        <div>
+          <label class="block text-lg font-semibold mb-2 text-gray-300" for="avg_glucose_level">Average Glucose Level</label>
+          <input type="number" step="any" id="avg_glucose_level" name="avg_glucose_level" placeholder="mg/dL"
+                 class="w-full px-4 py-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-400"/>
+        </div>
+
+        <div>
+          <label class="block text-lg font-semibold mb-2 text-gray-300" for="bmi">BMI</label>
+          <input type="number" step="any" id="bmi" name="bmi" placeholder="Body Mass Index"
+                 class="w-full px-4 py-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-400"/>
+        </div>
+
+        <div>
+          <label class="block text-lg font-semibold mb-2 text-gray-300" for="hypertension">Hypertension</label>
+          <select id="hypertension" name="hypertension"
+            class="w-full px-4 py-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-400">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-lg font-semibold mb-2 text-gray-300" for="heart_disease">Heart Disease</label>
+          <select id="heart_disease" name="heart_disease"
+            class="w-full px-4 py-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-400">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-lg font-semibold mb-2 text-gray-300" for="smoking_status">Smoking Status</label>
+          <select id="smoking_status" name="smoking_status"
+            class="w-full px-4 py-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-400">
+            <option value="0">Never Smoked</option>
+            <option value="1">Formerly Smoked</option>
+            <option value="2">Never Smoked</option>
+            <option value="3">Smokes</option>
+          </select>
+        </div>
+
+        <div class="pt-6">
+          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 transition text-white py-3 rounded font-bold">
+            Predict Stroke Risk
+          </button>
+        </div>
+      </form>
+
+      <!-- Modal -->
+      <div id="resultModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl w-96 p-8 text-center text-black">
+          <h3 class="text-2xl font-bold mb-6">Stroke Risk Result</h3>
+          <p id="resultText" class="text-lg font-semibold"></p>
+          <button onclick="closeModal()" class="mt-8 bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 font-semibold">
+            Close
+          </button>
+        </div>
       </div>
-    </div>
-  </header>
 
+    </main>
 
-  <main class="max-w-3xl mx-auto pt-32 px-6">
-    <h2 class="text-4xl font-bold text-blue-500 mb-6">Stroke Risk Prediction</h2>
-    <form id="strokeForm" method="post" class="space-y-6 bg-neutral-800 p-6 rounded-xl shadow-xl">
-
-      <div>
-        <label class="block text-lg font-semibold mb-2" for="age">Age</label>
-        <input type="number" id="age" name="age" placeholder="Enter your age"
-               class="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500"/>
-      </div>
-
-      <div>
-        <label class="block text-lg font-semibold mb-2" for="avg_glucose_level">Average Glucose Level</label>
-        <input type="number" step="any" id="avg_glucose_level" name="avg_glucose_level" placeholder="mg/dL"
-               class="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500"/>
-      </div>
-
-      <div>
-        <label class="block text-lg font-semibold mb-2" for="bmi">BMI</label>
-        <input type="number" step="any" id="bmi" name="bmi" placeholder="Body Mass Index"
-               class="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500"/>
-      </div>
-
-      <div>
-        <label class="block text-lg font-semibold mb-2" for="hypertension">Hypertension</label>
-        <select id="hypertension" name="hypertension" class="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500">
-          <option value="0">No</option>
-          <option value="1">Yes</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block text-lg font-semibold mb-2" for="heart_disease">Heart Disease</label>
-        <select id="heart_disease" name="heart_disease" class="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500">
-          <option value="0">No</option>
-          <option value="1">Yes</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block text-lg font-semibold mb-2" for="smoking_status">Smoking Status</label>
-        <select id="smoking_status" name="smoking_status" class="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500">
-          <option value="0">Never Smoked</option>
-          <option value="1">Formerly Smoked </option>
-          <option value="2">Never Smoked </option>
-          <option value="3">Smokes </option>
-        </select>
-      </div>
-
-      <div class="pt-4">
-        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 transition text-white py-2 px-6 rounded font-bold">
-          Predict Stroke Risk
-        </button>
-      </div>
-    </form>
-
-    <div id="resultModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-      <div class="bg-white rounded-lg shadow-xl w-80 p-6 text-center text-black">
-        <h3 class="text-xl font-bold mb-4">Stroke Risk Result</h3>
-        <p id="resultText" class="text-lg font-semibold"></p>
-        <button onclick="closeModal()" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Close
-        </button>
-      </div>
-    </div>
   </div>
-  </main>
+
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
