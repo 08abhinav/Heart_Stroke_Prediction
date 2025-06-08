@@ -6,32 +6,36 @@
   <title>CardioPredict</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black">
-  <header class="bg-neutral-800 text-white shadow">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">    
-            <div class="flex items-center">
-            <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full"/>
+<body class="min-h-screen bg-cover bg-center bg-no-repeat" style="background-image: url('https://www.insideprecisionmedicine.com/wp-content/uploads/2019/01/1417-696x484.jpeg');">
+  <div class="bg-black bg-opacity-70 min-h-screen">
+    <header class="bg-white/10 backdrop-blur-md text-white shadow">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center">
+            <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full" />
             <div class="ml-4">
-                <h1 class="text-2xl font-bold font-mono">CardioPredict</h1>
-                <p class="text-sm font-mono font-semibold">Know Before It Strikes</p>
+              <h1 class="text-2xl font-bold font-mono">CardioPredict</h1>
+              <p class="text-sm font-mono font-semibold">Know Before It Strikes</p>
             </div>
-            </div>
-
-            <nav class="flex space-x-8 text-lg font-medium font-mono">
+          </div>
+          <nav class="flex space-x-8 text-lg font-medium font-mono">
             <a href="/" class="hover:text-blue-400 transition">Home</a>
-            <!-- <a href="/predict" class="hover:text-blue-400 transition">Predict</a> -->
             <a href="/about" class="hover:text-blue-400 transition">About</a>
-            </nav>
+          </nav>
         </div>
-    </div>
-  </header>
+      </div>
+    </header>
 
-  <!-- You can add page content here -->
-  <main class="text-center text-white p-10">
-    <h2 class="text-4xl font-bold text-blue-500">Welcome to CardioPredict</h2>
-    <p class="mt-4 text-gray-300">Your AI-powered heart stroke risk analyzer</p>
-    <button class="border border-gray-700 mt-4 rounded-lg px-4 hover:text-blue-400 transition"><a href="/get-started" class="text-2xl">Try Now</a></button>
-  </main>
+    <main class="flex flex-col items-center justify-center text-center text-white p-10 h-[calc(100vh-5rem)]">
+      <h2 class="text-5xl font-bold text-blue-400 drop-shadow-md">Welcome to CardioPredict</h2>
+      <p class="mt-4 text-lg text-gray-200 max-w-xl">Your AI-powered heart stroke risk analyzer</p>
+      <button class="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition">
+        <a href="/get-started" class="inline-block text-white font-semibold  transition">
+          Click Me
+        </a>
+      </button>
+    </main>
+  </div>
 </body>
+
 </html>
