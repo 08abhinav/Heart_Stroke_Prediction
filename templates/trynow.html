@@ -8,22 +8,22 @@
   <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
 </head>
 <body
-  class="min-h-screen bg-cover bg-center bg-no-repeat font-mono"
+  class="min-h-screen bg-cover bg-center bg-no-repeat font-mono overflow-x-hidden"
   style="background-image: url('https://www.insideprecisionmedicine.com/wp-content/uploads/2019/01/1417-696x484.jpeg');"
 >
-  <div class="bg-black bg-opacity-70 min-h-screen flex flex-col">
+  <div class="bg-black bg-opacity-50 min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="bg-white/10 backdrop-blur-md text-white shadow fixed top-0 w-full z-50">
+    <header class="sticky top-0 z-50 bg-white/10 backdrop-blur-md text-white shadow rounded-full mx-6 mt-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <div class="flex items-center">
             <img src="{{ url_for('static', filename='images/heart.png') }}" alt="heart logo" class="w-12 h-12 rounded-full" />
             <div class="ml-4">
-              <h1 class="text-2xl font-bold">CardioPredict</h1>
-              <p class="text-sm font-semibold">Know Before It Strikes</p>
+              <h1 class="text-2xl font-bold font-mono">CardioPredict</h1>
+              <p class="text-sm font-mono font-semibold">Know Before It Strikes</p>
             </div>
           </div>
-          <nav class="flex space-x-8 text-lg">
+          <nav class="flex space-x-8 text-xl font-medium font-mono">
             <a href="/" class="hover:text-blue-400 transition">Home</a>
             <a href="/about" class="hover:text-blue-400 transition">About</a>
           </nav>
@@ -32,7 +32,7 @@
     </header>
 
     <!-- Main content -->
-    <main class="max-w-3xl mx-auto px-6 pt-32 pb-16 flex-grow">
+    <main class="max-w-3xl mx-auto px-6 pt-14 pb-16 flex-grow">
       <h2 class="text-4xl font-bold text-blue-400 mb-10 text-center drop-shadow-md">
         Get Started With Heart Stroke Prediction
       </h2>
@@ -44,7 +44,6 @@
           It considers medical factors like your age, BMI, glucose level, and lifestyle choices like smoking or physical activity.
           After you provide these inputs, our model instantly calculates your likelihood of having a potential heart stroke.
         </p>
-        <span class="text-red-400 text-sm mt-2">Note: This system is still under development, so predictions may not be fully accurate. Results can vary and should not be used for medical decisions.</span>
       </section>
 
       <section class="bg-neutral-900 bg-opacity-70 rounded-xl shadow-xl p-8 mb-10 backdrop-blur-sm">
@@ -64,6 +63,10 @@
           Check My Risk
         </a>
       </div>
+
+      <section class="mt-8">
+        <span class="text-red-400 text-sm">Note: This system is still under development, so predictions may not be fully accurate. Results can vary and should not be used for medical decisions.</span>
+      </section>
     </main>
   </div>
 </body>
