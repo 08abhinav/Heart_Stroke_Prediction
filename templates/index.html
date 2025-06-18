@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CardioPredict</title>
+  <title>CardioPredict – Heart Stroke Risk Analysis</title>
+  <meta name="description" content="Predict your risk of heart stroke using AI-powered insights.">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
-   <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
 </head>
-<body class="min-h-screen bg-cover bg-center bg-no-repeat" >
+
+<body class="relative min-h-screen bg-cover bg-center bg-no-repeat overflow-x-hidden">
+
   <!-- Video -->
   <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-1]">
     <source src="{{ url_for('static', filename='video/heartVideo.mp4') }}" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <div class="bg-black bg-opacity-70 min-h-screen">
-    <header class="bg-white/10 backdrop-blur-md text-white shadow">
+  <div class="bg-black bg-opacity-50 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/10 backdrop-blur-md text-white shadow rounded-full mx-6 mt-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <div class="flex items-center">
@@ -25,7 +30,7 @@
               <p class="text-sm font-mono font-semibold">Know Before It Strikes</p>
             </div>
           </div>
-          <nav class="flex space-x-8 text-lg font-medium font-mono">
+          <nav class="flex space-x-8 text-xl font-medium font-mono">
             <a href="/" class="hover:text-blue-400 transition">Home</a>
             <a href="/about" class="hover:text-blue-400 transition">About</a>
           </nav>
@@ -33,16 +38,15 @@
       </div>
     </header>
 
-    <main class="flex flex-col items-center justify-center text-center text-white p-10 h-[calc(100vh-5rem)]">
+
+    <main class="flex-grow flex flex-col items-center justify-center text-center text-white p-10">
       <h2 class="text-5xl font-bold text-blue-400 drop-shadow-md">Welcome to CardioPredict</h2>
       <p class="mt-4 text-lg max-w-xl text-blue-200">Your AI-powered heart stroke risk analyzer</p>
-      <button class="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition">
-        <a href="/get-started" class="inline-block text-white font-semibold  transition">
-          Get Started
-        </a>
-      </button>
+      <a href="/get-started" class="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition inline-block">
+        Get Started
+      </a>
     </main>
+
   </div>
 </body>
-
 </html>
